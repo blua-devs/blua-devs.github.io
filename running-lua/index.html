@@ -409,6 +409,24 @@
                 
                 
                 <h1 id="running-lua">Running Lua</h1>
+<p><em>Documentation is in</em> <strong>ALPHA</strong> <em>and is not as verbose as the beta or final release will be. Some minor details might be wrong.</em>
+<br><br><br></p>
+<p>To run Lua code, you simply need to create a <code>bLuaInstance</code> with settings of your choice, or leave the constructor empty if you want to use default settings. Once you've created a bLua instance, you can run Lua code with the <code>DoString</code> function. <code>DoBuffer</code> and <code>ExecBuffer</code> are available for more advanced usage.</p>
+<pre><code>bLuaInstance inst = new bLuaInstance();
+inst.DoString("blua.print('Hello world!')");
+</code></pre>
+<p>To run multiple lines of manually-typed Lua code, you can begin your string with the <code>@</code> symbol:</p>
+<pre><code>inst.DoString(@"
+    a = 10
+    b = 5
+
+    function Test()
+        blua.print(a + b)
+    end
+
+    Test()
+");
+</code></pre>
                 
               
               

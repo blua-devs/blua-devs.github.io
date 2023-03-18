@@ -409,6 +409,50 @@
                 
                 
                 <h1 id="user-data">User Data</h1>
+<p><em>Documentation is in</em> <strong>ALPHA</strong> <em>and is not as verbose as the beta or final release will be. Some minor details might be wrong.</em>
+<br><br><br></p>
+<p>To mark C# classes, properties, and functions as Lua user data, you simply need to add the <code>bLuaUserData</code> attribute to the class containing the desired user data. This will make the class a new type of user data that Lua recognizes, and will allow Lua to access properties and functions on any instances of that class in Lua.</p>
+<pre><code>[bLuaUserData]
+public class Character
+{
+    public int health;
+
+    public void Damage(dmg)
+    {
+        health -= dmg;
+    }
+}
+</code></pre>
+<p>To hide certain properties or functions from being marked as Lua user data, you can use the <code>bLuaHidden</code> attribute.</p>
+<pre><code>[bLuaUserData]
+public class Sword
+{
+    public int damage;
+
+    [bLuaHidden]
+    public void DebugPrintDamage()
+    {
+        Debug.Log(damage);
+    }
+}
+</code></pre>
+<p>A technique you might find particularly useful is making a class that is then set as a global variable in your Lua instance. This can be helpful for global functions and Lua taking that first step to affecting C# data.</p>
+<pre><code>[bLuaUserData]
+public class GlobalFunctionLibrary
+{
+    public Character NewCharacter()
+    {
+        return new Character();
+    }
+}
+
+// bLuaInstance inst = new bLuaInstance();
+// inst.SetGlobal("global", bLuaValue.CreateUserData(inst, new GlobalFunctionLibrary());
+// inst.DoString(@"
+//    local char = global.NewCharacter()
+//    blua.print(char.health)
+// ");
+</code></pre>
                 
               
               

@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-bluas-indev-website" class="md-skip">
+        <a href="#what-is-blua" class="md-skip">
           Skip to content
         </a>
       
@@ -307,15 +307,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#heres-an-image" class="md-nav__link">
-    Here's an image
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#heres-a-code-block" class="md-nav__link">
-    Here's a code block
+  <a href="#what-makes-blua-special" class="md-nav__link">
+    What makes bLua special?
   </a>
   
 </li>
@@ -441,15 +434,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#heres-an-image" class="md-nav__link">
-    Here's an image
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#heres-a-code-block" class="md-nav__link">
-    Here's a code block
+  <a href="#what-makes-blua-special" class="md-nav__link">
+    What makes bLua special?
   </a>
   
 </li>
@@ -478,18 +464,46 @@
                   </a>
                 
                 
-                <h1 id="welcome-bluas-indev-website">Welcome bLua's (indev) website!</h1>
-<p>We now have a pretty url at <a href="https://www.blua-lang.org">blua-lang.org</a>!</p>
-<h2 id="heres-an-image">Here's an image</h2>
-<p><img alt="Image title" height="128" src="assets/logo.png" width="128" /></p>
-<h2 id="heres-a-code-block">Here's a code block</h2>
-<pre><code>-- this function prints the cold, hard truth
-function test()
-    print("Lua is a beautiful language")
-end
+                <h1 id="what-is-blua">What is bLua?</h1>
+<p>bLua is a plugin for Unity that allows C# code to easily interact with native Lua 5.4. That means running Lua code with a single C# function:</p>
+<pre><code>bLuaInstance inst = new bLuaInstance();
+inst.DoString("blua.print('Hello world!')");
 </code></pre>
+<p>It's also incredibly easy to mark C# classes as Lua user data so they can be accessed via Lua:</p>
+<pre><code>[bLuaUserData] // Add this attribute to any C# class!
+public class Character {
+    public int health = 100;
+    public void Damage(dmg) {
+        health -= dmg;
+    }
+}
+
+inst.DoString(@"
+    local char -- get the character in some way here
+    char.Damage(10)
+    blua.print(char.health)
+");
+</code></pre>
+<h2 id="what-makes-blua-special">What makes bLua special?</h2>
+<p>We run Lua code using native Lua, so your Lua script will run anywhere from 100 - 10,000 times faster than with plugins like <a href="https://www.moonsharp.org/">Moonsharp</a>! Try our benchmarks yourself <a href="https://github.com/blua-devs/blua-example">here</a>. bLua is made specifically for Unity projects, so there are no extra steps for getting Lua integrated.</p>
 <h2 id="join-our-community-on-discord">Join our community on <a href="https://discord.com/invite/RZs4T3w3rR">Discord</a>!</h2>
-<p><a class="md-button md-button--primary" href="https://discord.com/invite/RZs4T3w3rR"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z"/></svg></span> Discord</a></p>
+<p><a class="md-button md-button--primary" href="https://discord.com/invite/RZs4T3w3rR"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z"/></svg></span> Discord</a>
+<br><br><br></p>
+<h1 id="blua-is-in-alpha">bLua is in ALPHA</h1>
+<p>bLua is a relatively new open-source project being developed by a small team of Lua lovers. We're still finishing our interop with native Lua and adding all of the useful features we feel necessary for ease of use and parity with competing plugins. As of writing this (3/17/2023) bLua is completely functional (check out our <a href="https://github.com/blua-devs/blua-example">example project</a>!) but hasn't been user or developer tested.</p>
+<h2 id="how-can-i-help">How can I help?</h2>
+<p>If you know Unity's C# and Lua's C API, you can join our <a href="https://discord.com/invite/RZs4T3w3rR">Discord community</a> or reach out to <strong>tyster#0001</strong> to inquire about joining the contributor team. We have an organized list of desired features and bug fixes that we call Bounties that any contributors can grab and start working on. Contributors are listed on the website as thanks for their contributions.
+<br><br>
+Wanna help other ways? Encourage others to check us out! Drop a star on our <a href="https://github.com/blua-devs/blua">main github repository</a>! Point out bugs and make feature requests in our Discord!</p>
+<h2 id="contributors">Contributors</h2>
+<p><img align="left" alt="World to Build logo" height="128" src="assets/worldtobuild-logo.png" width="128" />
+<br><br>
+<a href="https://twitter.com/tyster220">Tyster</a> and the team at <a href="https://www.worldtobuild.com/">World to Build</a> actively maintain and upgrade bLua so it can power Lua scripts in over 2,500 user-created games.
+<br><br><br><br></p>
+<p><img align="left" alt="DMHub logo" height="128" src="assets/dmhub-logo.png" width="128" />
+<br><br>
+Denivarius and the team at <a href="https://www.dmhubapp.com/">DMHub</a> created the original native Lua interop that become bLua and actively assist in the development of new features.
+<br><br><br><br></p>
                 
               
               
