@@ -482,7 +482,7 @@ public class Sword
 </code></pre>
 <p>A technique you might find particularly useful is making a class that is then set as a global variable in your Lua instance. This can be helpful for global functions and Lua taking that first step to affecting C# data.</p>
 <pre><code>[bLuaUserData]
-public class GlobalFunctionLibrary
+public class CharacterFunctionLibrary
 {
     public Character NewCharacter()
     {
@@ -491,10 +491,10 @@ public class GlobalFunctionLibrary
 }
 
 // bLuaInstance inst = new bLuaInstance();
-// inst.SetGlobal("global", new GlobalFunctionLibrary());
+// inst.SetGlobal("CharacterLib", new CharacterFunctionLibrary());
 // inst.DoString(@"
-//    local char = global.NewCharacter()
-//    blua.print(char.health)
+//    local char = CharacterLib.NewCharacter()
+//    print(char.health)
 // ");
 </code></pre>
 <h2 id="join-our-community-on-discord">Join our community on <a href="https://discord.com/invite/RZs4T3w3rR">Discord</a>!</h2>

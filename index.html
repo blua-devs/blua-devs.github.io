@@ -543,7 +543,7 @@
                 <h2 id="what-is-blua">What is bLua?</h2>
 <p>bLua is a plugin for Unity that allows C# code to easily interact with native Lua 5.4. That means running blazing fast Lua code with a single C# function.</p>
 <pre><code>bLuaInstance inst = new bLuaInstance();
-inst.DoString("blua.print('Hello world!')");
+inst.DoString("print('Hello world!')");
 </code></pre>
 <p>It's also incredibly easy to mark C# classes as Lua user data so they can be accessed via Lua.</p>
 <pre><code>[bLuaUserData] // Add this attribute to any C# class!
