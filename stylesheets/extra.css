@@ -1,10 +1,10 @@
 :root > * {
-    --md-primary-fg-color:          #517cc7;
-    --md-primary-fg-color--light:   #517cc7;
-    --md-primary-fg-color--dark:    #517cc7;
-    --md-accent-fg-color:           #bfd4ff;
-    --md-accent-fg-color--light:    #bfd4ff;
-    --md-accent-fg-color--dark:     #bfd4ff;
+    --md-primary-fg-color:          #4b64cd;
+    --md-primary-fg-color--light:   #4b64cd;
+    --md-primary-fg-color--dark:    #4b64cd;
+    --md-accent-fg-color:           #ced7ff;
+    --md-accent-fg-color--light:    #ced7ff;
+    --md-accent-fg-color--dark:     #ced7ff;
 }
 .md-header__title .md-header__topic {
     font-weight: 800;
