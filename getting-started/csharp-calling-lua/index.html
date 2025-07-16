@@ -18,7 +18,7 @@
         <link rel="prev" href="../lua-calling-csharp/">
       
       
-        <link rel="next" href="../../reference/instance/">
+        <link rel="next" href="../example/">
       
       
         
@@ -98,7 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="bLua for Unity" class="md-header__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -344,7 +344,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="bLua for Unity" class="md-nav__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     bLua for Unity
@@ -398,6 +398,8 @@
   
     
     
+      
+        
       
         
       
@@ -559,6 +561,32 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -827,25 +855,25 @@
 
 <h1 id="c-calling-lua"><strong>C# Calling Lua</strong></h1>
 <p>To access Lua from C#, we first need to define some Lua functions in code and run that code on our instance.</p>
-<pre><code>instance.DoString(@"
-function healCharacter(character)
-    local healthBefore = character.health
-    character.health = 100
-    print('Healed character from ', healthBefore, ' to ', character.health)
-end
-");
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="n">DoString</span><span class="p">(</span><span class="s">@&quot;</span>
+<span class="s">    function healCharacter(character)</span>
+<span class="s">        local healthBefore = character.health</span>
+<span class="s">        character.health = 100</span>
+<span class="s">        print(&#39;Healed character from &#39;, healthBefore, &#39; to &#39;, character.health)</span>
+<span class="s">    end</span>
+<span class="s">&quot;</span><span class="p">);</span>
+</code></pre></div>
 <p>Now we need to get a reference to our <code>healCharacter</code> function in C#.</p>
-<pre><code>bLuaValue healFunction = instance.GetGlobal("healCharacter");
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">bLuaValue</span><span class="w"> </span><span class="n">healFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="n">GetGlobal</span><span class="p">(</span><span class="s">&quot;healCharacter&quot;</span><span class="p">);</span>
+</code></pre></div>
 <p>Let's do some safety checks to make sure the function is valid, and then call it with a <code>Character</code> passed as a parameter.</p>
-<pre><code>if (healFunction != null &amp;&amp; healFunction.Type == DataType.Function)
-{
-    Character newCharacter = new Character();
-    newCharacter.Damage(50);
-    instance.Call(healFunction, newCharacter);
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">healFunction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">healFunction</span><span class="p">.</span><span class="n">Type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DataType</span><span class="p">.</span><span class="n">Function</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Character</span><span class="w"> </span><span class="n">newCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Character</span><span class="p">();</span>
+<span class="w">    </span><span class="n">newCharacter</span><span class="p">.</span><span class="n">Damage</span><span class="p">(</span><span class="m">50</span><span class="p">);</span>
+<span class="w">    </span><span class="n">instance</span><span class="p">.</span><span class="n">Call</span><span class="p">(</span><span class="n">healFunction</span><span class="p">,</span><span class="w"> </span><span class="n">newCharacter</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -894,13 +922,13 @@ end
         
         
           
-          <a href="../../reference/instance/" class="md-footer__link md-footer__link--next" aria-label="Next: bLuaInstance">
+          <a href="../example/" class="md-footer__link md-footer__link--next" aria-label="Next: Examples">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                bLuaInstance
+                Examples
               </div>
             </div>
             <div class="md-footer__button md-icon">

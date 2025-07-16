@@ -98,7 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="bLua for Unity" class="md-header__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -344,7 +344,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="bLua for Unity" class="md-nav__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     bLua for Unity
@@ -398,6 +398,8 @@
   
     
     
+      
+        
       
         
       
@@ -551,6 +553,32 @@
     
   
     C# Calling Lua
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
   
 
     
@@ -827,35 +855,35 @@
 
 <h1 id="running-lua"><strong>Running Lua</strong></h1>
 <p>To run Lua code with bLua, you will need to create a <a href="/reference/instance/">bLuaInstance</a>. You can set up your instance with settings and rules to your liking through the settings property, or create an instance without any settings.</p>
-<pre><code>bLuaSettings settings = new bLuaSettings()
-{
-    features = bLuaSettings.SANDBOX_BASICMODDING,
-    tickBehaviour = bLuaSettings.TickBehaviour.AlwaysTick
-};
+<div class="highlight"><pre><span></span><code><span class="n">bLuaSettings</span><span class="w"> </span><span class="n">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">bLuaSettings</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bLuaSettings</span><span class="p">.</span><span class="n">SANDBOX_BASICMODDING</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tickBehaviour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bLuaSettings</span><span class="p">.</span><span class="n">TickBehaviour</span><span class="p">.</span><span class="n">AlwaysTick</span>
+<span class="p">};</span>
 
-// Settings is an optional parameter
-bLuaInstance instance = new bLuaInstance(settings);
-</code></pre>
+<span class="c1">// Settings is an optional parameter</span>
+<span class="n">bLuaInstance</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">bLuaInstance</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span>
+</code></pre></div>
 <p>You only need one instance to run Lua code, it can be reused by multiple chunks of code as desired. You can run standard Lua code through the instance by passing it in as a string.</p>
-<pre><code>instance.DoString(@"
-    local myInteger = 100
-    myInteger = 50
-    print(myInteger)
-");
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="n">DoString</span><span class="p">(</span><span class="s">@&quot;</span>
+<span class="s">    local myInteger = 100</span>
+<span class="s">    myInteger = 50</span>
+<span class="s">    print(myInteger)</span>
+<span class="s">&quot;</span><span class="p">);</span>
+</code></pre></div>
 <p>You will notice that the <code>print</code> function in Lua doesn't automatically send logs to Unity's editor log. You can hook this up yourself through an event on the instance.</p>
-<pre><code>instance.OnPrint.AddListener(LuaPrint);
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="n">OnPrint</span><span class="p">.</span><span class="n">AddListener</span><span class="p">(</span><span class="n">LuaPrint</span><span class="p">);</span>
 
-void LuaPrint(bLuaValue[] parameters)
-{
-    string log = "";
-    foreach (bLuaValue parameter in parameters)
-    {
-        log += parameter.ToString();
-    }
-    Debug.Log(log); // Log the print to Unity's log
-}
-</code></pre>
+<span class="k">void</span><span class="w"> </span><span class="nf">LuaPrint</span><span class="p">(</span><span class="n">bLuaValue</span><span class="p">[]</span><span class="w"> </span><span class="n">parameters</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="n">bLuaValue</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">parameters</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">parameter</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">log</span><span class="p">);</span><span class="w"> </span><span class="c1">// Log the print to Unity&#39;s log</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

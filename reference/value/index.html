@@ -98,7 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="bLua for Unity" class="md-header__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -344,7 +344,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="bLua for Unity" class="md-nav__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     bLua for Unity
@@ -396,6 +396,8 @@
   
     
     
+      
+        
       
         
       
@@ -552,6 +554,32 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -659,6 +687,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    bLuaValue
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -674,6 +719,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -808,6 +905,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -826,7 +964,33 @@
 
 
 <h1 id="bluavalue"><strong>bLuaValue</strong></h1>
-<p>Coming soon</p>
+<p>A bLuaValue (also referred to as "value") is an object representing some value in Lua. It can be many types, some of which aren't directly translated into C# such as threads and tables, and can also be a reference ID pointing to a C# object. Values exist within a specific <a href="/reference/instance/">bLuaInstance</a>, and wont work if used on other instances.</p>
+<p><br></p>
+<h2 id="properties"><strong>Properties</strong></h2>
+<h3 id="luatype"><strong>luaType</strong></h3>
+<p>Returns the <code>LuaType</code> of this value.</p>
+<p><br></p>
+<h2 id="methods"><strong>Methods</strong></h2>
+<h3 id="isnil"><strong>IsNil</strong></h3>
+<p>Returns true if this value is <code>nil</code>.</p>
+<h3 id="toboolnumberintfloatstringlistdictionary"><strong>To(Bool/Number/Int/Float/String/List/Dictionary)</strong></h3>
+<p>Attempts to convert the value to a C# type based on the specific function called (<code>ToBool</code>, <code>ToNumber</code>, etc). If the conversion can't be done, the default value of that type will be returned. You can check the <code>LuaType</code> of this value before calling this function by checking the <code>luaType</code> property first.</p>
+<h3 id="topointer"><strong>ToPointer</strong></h3>
+<p>Attempts to convert the value to an <code>IntPtr</code> "pointer". If the conversion can't be done, the default value of <code>IntPtr</code> will be returned. This function is typically used for Lua types that don't have a C# representation, such as threads and tables, in which case the "pointer" points to the object in Lua.</p>
+<h3 id="toobject"><strong>ToObject</strong></h3>
+<p>Attempts to convert the value to an <code>object</code>. If the conversion can't be done, null will be returned. This function is typically used for C# types that don't have a Lua representation, such as userdata.</p>
+<h3 id="touserdata"><strong>ToUserData</strong></h3>
+<p>Attempts to convert the value to the given type <code>&lt;T&gt;</code>. If the conversion can't be done, null will be returned. This function is typically used for C# types that don't have a Lua representation.</p>
+<h3 id="isuserdatatype"><strong>IsUserDataType</strong></h3>
+<p>Returns true if this value represents userdata with the given type <code>&lt;T&gt;</code>.</p>
+<p><br></p>
+<h2 id="static-methods"><strong>Static Methods</strong></h2>
+<h3 id="createnil"><strong>CreateNil</strong></h3>
+<p>Returns a value that represents <code>nil</code>.</p>
+<h3 id="createboolnumberstring"><strong>Create(Bool/Number/String)</strong></h3>
+<p>Returns a new value that represents the given value based on the specific function called (<code>CreateBool</code>, <code>CreateNumber</code>, etc).</p>
+<h3 id="createuserdata"><strong>CreateUserData</strong></h3>
+<p>Returns a new value that represents the given [userdata supported] C# object.</p>
 
 
 

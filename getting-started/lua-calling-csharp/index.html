@@ -98,7 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="bLua for Unity" class="md-header__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -344,7 +344,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="bLua for Unity" class="md-nav__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     bLua for Unity
@@ -398,6 +398,8 @@
   
     
     
+      
+        
       
         
       
@@ -551,6 +553,32 @@
     
   
     C# Calling Lua
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
   
 
     
@@ -827,40 +855,40 @@
 
 <h1 id="lua-calling-c"><strong>Lua Calling C#</strong></h1>
 <p>To access C# userdata from Lua, you will need to create a class that has the <a href="/reference/userdata/">bLuaUserData</a> attribute. By default, instances will register all classes with this attribute when they initialize.</p>
-<pre><code>[bLuaUserData] // The bLua userdata attribute
-public class Character
-{
-    public int health = 100;
+<div class="highlight"><pre><span></span><code><span class="na">[bLuaUserData]</span><span class="w"> </span><span class="c1">// The bLua userdata attribute</span>
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Character</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
 
-    public void Damage(int damage)
-    {
-        health -= damage;
-    }
-}
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Damage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">damage</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">health</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">damage</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-[bLuaUserData]
-public class CharacterFunctionLibrary
-{
-    public static Character CreateCharacter()
-    {
-        return new Character();
-    }
-}
-</code></pre>
+<span class="na">[bLuaUserData]</span>
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CharacterFunctionLibrary</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">Character</span><span class="w"> </span><span class="nf">CreateCharacter</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">Character</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Next, we can add an instance of this <code>Character</code> class to our Lua environment as a global variable. We can also add an instance of our <code>CharacterFunctionLibrary</code>.</p>
-<pre><code>instance.SetGlobal("character", new Character());
-instance.SetGlobal("CharacterFunctionLibrary", new CharacterFunctionLibrary());
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="n">SetGlobal</span><span class="p">(</span><span class="s">&quot;character&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Character</span><span class="p">());</span>
+<span class="n">instance</span><span class="p">.</span><span class="n">SetGlobal</span><span class="p">(</span><span class="s">&quot;CharacterFunctionLibrary&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CharacterFunctionLibrary</span><span class="p">());</span>
+</code></pre></div>
 <p>In our Lua code, we can access these userdata objects from anywhere since they are global.</p>
-<pre><code>instance.DoString(@"
-    character.Damage(10)
-    print(character.health)
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="n">DoString</span><span class="p">(</span><span class="s">@&quot;</span>
+<span class="s">    character:Damage(10)</span>
+<span class="s">    print(character.health)</span>
 
-    local newCharacter = CharacterFunctionLibrary.CreateCharacter()
-    newCharacter.Damage(20)
-    print(newCharacter.health)
-");
-</code></pre>
+<span class="s">    local newCharacter = CharacterFunctionLibrary.CreateCharacter()</span>
+<span class="s">    newCharacter:Damage(20)</span>
+<span class="s">    print(newCharacter.health)</span>
+<span class="s">&quot;</span><span class="p">);</span>
+</code></pre></div>
 
 
 

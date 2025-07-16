@@ -98,7 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="bLua for Unity" class="md-header__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -344,7 +344,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="bLua for Unity" class="md-nav__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="../../assets/logo-nobackground.png" alt="logo">
+  <img src="../../assets/logo-dark.png" alt="logo">
 
     </a>
     bLua for Unity
@@ -396,6 +396,8 @@
   
     
     
+      
+        
       
         
       
@@ -552,6 +554,32 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -685,6 +713,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    bLuaUserData
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -700,6 +745,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -808,6 +894,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -826,7 +942,41 @@
 
 
 <h1 id="bluauserdata"><strong>bLuaUserData</strong></h1>
-<p>Coming soon</p>
+<p>bLuaUserData is a static class that has helper functions related to registering and creating userdata in Lua from C# objects.</p>
+<p>The only way Lua can access C# code from Lua code is if the C# code is first registered as userdata <a href="https://www.lua.org/manual/5.4/manual.html#2.1">(a Lua concept)</a>. The way bLua allows you to register userdata is by marking C# classes with the <code>bLuaUserDataAttribute</code>, like the example below.</p>
+<div class="highlight"><pre><span></span><code><span class="na">[bLuaUserData]</span>
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyUserData</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numberProperty</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">LogSomething</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>More examples of userdata and how to access it on the <a href="/getting-started/lua-calling-csharp/">"Getting Started"</a> page.</p>
+<p><a href="/reference/instance/">bLuaInstance</a>s will automatically register all C# classes marked as userdata by default. If you want to register specific types manually or at a later time than the instance's creation, you can use the <code>AutoRegisterTypes</code> setting and manually call <code>Register</code> or <code>RegisterAllBLuaUserData</code>.</p>
+<p><br></p>
+<h2 id="static-methods"><strong>Static Methods</strong></h2>
+<h3 id="register"><strong>Register</strong></h3>
+<p>Registers a given type on the given <a href="/reference/instance/">bLuaInstance</a>.</p>
+<h3 id="registerallbluauserdata"><strong>RegisterAllBLuaUserData</strong></h3>
+<p>Registers all types in the project that are marked with the <code>bLuaUserDataAttribute</code> on the given <a href="/reference/instance/">bLuaInstance</a>. This is run automatically on <a href="/reference/instance/">bLuaInstance</a>s by default when they are created.</p>
+<h3 id="isuserdata"><strong>IsUserData</strong></h3>
+<p>Returns true if the given type is marked with the <code>bLuaUserDataAttribute</code>,  which allows it to be registered as userdata.</p>
+<h3 id="isuserdataregistered"><strong>IsUserDataRegistered</strong></h3>
+<p>Returns true if the given type is registered on the given <a href="/reference/instance/">bLuaInstance</a>.</p>
+<p><br></p>
+<h2 id="attributes"><strong>Attributes</strong></h2>
+<h3 id="bluauserdata_1"><strong>bLuaUserData</strong></h3>
+<p>This attribute goes on classes and allows the type to be registered as userdata on a <a href="/reference/instance/">bLuaInstance</a>.</p>
+<h3 id="bluahidden"><strong>bLuaHidden</strong></h3>
+<p>This attribute goes on methods, properties, and fields, and will hide them from being accessible in Lua as userdata. For example, if you have a class <code>Character</code> that is marked as userdata with <code>[bLuaUserData]</code>, and a method on that class <code>Debug_TakeDamage</code> that is marked with <code>[bLuaHidden]</code>, the <code>Debug_TakeDamage</code> method will not be accessible from Lua.</p>
+<h3 id="bluaparam_ignored"><strong>bLuaParam_Ignored</strong></h3>
+<p>This attribute goes on parameters in methods, and will cause the parameter to be ignored when registering the method as userdata. For example, if you have a method on a userdata class with two parameters, the first marked with <code>[bLuaParam_Ignored]</code>, and the second without that attribute, Lua can call that function as if only the second parameter existed. On the C# side, the first parameter will never be filled with data from Lua but could still be called from C# with that parameter filled.</p>
+<h3 id="bluaparam_state"><strong>bLuaParam_State</strong></h3>
+<p>This attribute goes on parameters in methods of type <code>IntPtr</code>. This attribute does all of the same things as <code>[bLuaParam_Ignored]</code> but will automatically fill the parameter with the calling Lua state of the Lua thread that called the userdata method. This is mostly used for internal bLua features.</p>
 
 
 

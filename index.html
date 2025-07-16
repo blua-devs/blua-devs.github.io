@@ -96,7 +96,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="bLua for Unity" class="md-header__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="assets/logo-nobackground.png" alt="logo">
+  <img src="assets/logo-dark.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -342,7 +342,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="bLua for Unity" class="md-nav__button md-logo" aria-label="bLua for Unity" data-md-component="logo">
       
-  <img src="assets/logo-nobackground.png" alt="logo">
+  <img src="assets/logo-dark.png" alt="logo">
 
     </a>
     bLua for Unity
@@ -404,6 +404,8 @@
   
     
     
+      
+        
       
         
       
@@ -547,6 +549,32 @@
     
   
     C# Calling Lua
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
   
 
     
@@ -824,9 +852,9 @@
 <h1 id="what-is-blua"><strong>What is bLua?</strong></h1>
 <p><img align="right" alt="Header (Home)" height="176" src="/assets/logo.png" width="176" /></p>
 <p>bLua is a plugin for Unity that allows C# code to easily interact with native Lua 5.4 and vice versa. That means running blazing fast Lua code with just two lines of code.</p>
-<pre><code>bLuaInstance instance = new bLuaInstance();
-instance.DoString("print('Hello world!')");
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">bLuaInstance</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">bLuaInstance</span><span class="p">();</span>
+<span class="n">instance</span><span class="p">.</span><span class="n">DoString</span><span class="p">(</span><span class="s">&quot;print(&#39;Hello world!&#39;)&quot;</span><span class="p">);</span>
+</code></pre></div>
 <p><br></p>
 <h1 id="what-makes-blua-special"><strong>What makes bLua special?</strong></h1>
 <p>bLua is lightweight and runs Lua code using native <a href="https://www.lua.org/manual/5.4/manual.html">Lua 5.4</a>, so your Lua code will run anywhere from <strong>100 to 10,000 times faster</strong> than with plugins like <a href="https://www.moonsharp.org/">Moonsharp</a> and <a href="https://github.com/Tencent/xLua">XLua</a>! Try our benchmarks yourself in the <a href="https://github.com/blua-devs/blua-example">bLua example Unity project</a>.</p>
